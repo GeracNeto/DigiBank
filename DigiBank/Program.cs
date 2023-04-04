@@ -1,1 +1,4 @@
-﻿Console.WriteLine("DigiBank");
+﻿
+using DigiBank.Classes;
+
+Layout.TelaPrincipal();
