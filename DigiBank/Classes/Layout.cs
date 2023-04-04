@@ -146,12 +146,16 @@ namespace DigiBank.Classes
             switch (opcao)
             {
                 case 1:
+                    TelaDeposito(pessoa);
                     break;
                 case 2:
+                    TelaSaque(pessoa);
                     break;
                 case 3:
+                    TelaSaldo(pessoa);
                     break;
                 case 4:
+                    TelaExtrato(pessoa);
                     break;
                 case 5:
                     TelaPrincipal();
@@ -163,5 +167,162 @@ namespace DigiBank.Classes
                     break;
             }
         }
+
+        private static void TelaDeposito(Pessoa pessoa)
+        {
+            Console.Clear();
+
+            TelaBoasVindas(pessoa);
+
+            Console.WriteLine("                            Digite o Valor do Deposito:                       ");
+            double valor = double.Parse(Console.ReadLine());
+            Console.WriteLine("                          ==============================                      ");
+
+            pessoa.Conta.Deposita(valor);
+
+            Console.Clear();
+
+            TelaBoasVindas(pessoa);
+
+            Console.WriteLine("                                                                              ");
+            Console.WriteLine("                                                                              ");
+            Console.WriteLine("                   Deposito Realizado com Sucesso                             ");
+            Console.WriteLine("                  ================================                            ");
+            Console.WriteLine("                                                                              ");
+            Console.WriteLine("                                                                              ");
+
+            OpcaoVoltarLogado(pessoa);
+        }
+
+        private static void TelaSaque(Pessoa pessoa)
+        {
+            Console.Clear();
+
+            TelaBoasVindas(pessoa);
+
+            Console.WriteLine("                            Digite o Valor do Saque   :                       ");
+            double valor = double.Parse(Console.ReadLine());
+            Console.WriteLine("                          ==============================                      ");
+
+            bool okSaque = pessoa.Conta.Saca(valor);
+
+            Console.Clear();
+
+            TelaBoasVindas(pessoa);
+
+            Console.WriteLine("                                                                              ");
+            Console.WriteLine("                                                                              ");
+
+            if (okSaque)
+            {
+                Console.WriteLine("                   Saque Realizado com Sucesso                            ");
+                Console.WriteLine("                  ================================                        ");
+            }
+            else
+            {
+                Console.WriteLine("                         Saldo Insuficiente                               ");
+                Console.WriteLine("                  ================================                        ");
+            }
+
+            Console.WriteLine("                                                                              ");
+            Console.WriteLine("                                                                              ");
+
+            OpcaoVoltarLogado(pessoa);
+        }
+
+        private static void TelaSaldo(Pessoa pessoa)
+        {
+            Console.Clear();
+
+            TelaBoasVindas(pessoa);
+
+            Console.WriteLine($"                            Seu Saldo é: R$ {pessoa.Conta.ConsultaSaldo()}                         ");
+            Console.WriteLine("                          ============================                                              ");
+
+            OpcaoVoltarLogado(pessoa);
+
+        }
+
+        private static void TelaExtrato(Pessoa pessoa)
+        {
+            Console.Clear();
+
+            TelaBoasVindas(pessoa);
+
+            // Any() verifica se há algo na lista de extrato
+            if (pessoa.Conta.Extrato().Any())
+            {
+                double total = pessoa.Conta.Extrato().Sum(x => x.Valor);
+
+                foreach (Extrato extrato in pessoa.Conta.Extrato())
+                {
+                    Console.WriteLine("                                                                                               ");
+                    Console.WriteLine($"                             Data: {extrato.Data.ToString("dd/MM/yyyy HH:mm:ss")}             ");
+                    Console.WriteLine($"                             Tipo de Movimentação: {extrato.Descricao}                        ");
+                    Console.WriteLine($"                             Valor: {extrato.Valor}                                           ");
+                    Console.WriteLine("                            =====================================                              ");
+                }
+
+                Console.WriteLine("                                                                                                   ");
+                Console.WriteLine("                                                                                                   ");
+                Console.WriteLine($"                             SUB TOTAL: R$ {total}                                                ");
+                Console.WriteLine("                            ==============================                                         ");
+
+            }
+            else
+            {
+                Console.WriteLine("                                                                                                   ");
+                Console.WriteLine("                             Não Há Extrato a Ser Exibido                                          ");
+                Console.WriteLine("                            ==============================                                         ");
+            }
+
+            OpcaoVoltarLogado(pessoa);
+
+        }
+
+        private static void OpcaoVoltarLogado(Pessoa pessoa)
+        {
+            Console.WriteLine("                                                                                                   ");
+            Console.WriteLine("                              Entre com uma Opção Abaixo:                                          ");
+            Console.WriteLine("                            ==============================                                         ");
+            Console.WriteLine("                            1 - Voltar para Minha Conta                                            ");
+            Console.WriteLine("                            ==============================                                         ");
+            Console.WriteLine("                            2 - Sair                                                               ");
+            Console.WriteLine("                            ==============================                                         ");
+
+            opcao = int.Parse(Console.ReadLine());
+
+            if(opcao == 1)
+            {
+                TelaContaLogada(pessoa);
+            }
+            else
+            {
+                TelaPrincipal();
+            }
+        }
+
+        private static void OpcaoDeslogado()
+        {
+            Console.WriteLine("                    Entre com uma Opção Abaixo:                             ");
+            Console.WriteLine("                  ==============================                            ");
+            Console.WriteLine("                  1 - Voltar para o Menu Principal                          ");
+            Console.WriteLine("                  =================================                         ");
+            Console.WriteLine("                  2 - Sair                                                  ");
+            Console.WriteLine("                  =================================                         ");
+
+            opcao = int.Parse(Console.ReadLine());
+
+            if (opcao == 1)
+            {
+                TelaPrincipal();  
+            }
+            else
+            {
+                Console.WriteLine("                                    Opção Inválida                            ");
+                Console.WriteLine("                            ==============================                    ");
+            }
+        }
+
     }
 }

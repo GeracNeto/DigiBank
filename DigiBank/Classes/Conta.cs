@@ -15,7 +15,7 @@ namespace DigiBank.Classes
         {
             NumeroDaAgencia = "0001";
             NumeroDaContaSequencial++;
-
+            Movimentacoes = new List<Extrato>();
         }
 
         // Atributos
@@ -23,6 +23,8 @@ namespace DigiBank.Classes
         public string NumeroDaAgencia { get; private set; }
         public string NumeroDaConta { get; protected set; }
         public static int NumeroDaContaSequencial { get; private set; }
+
+        private List<Extrato> Movimentacoes;
 
         // Métodos
         public double ConsultaSaldo()
@@ -32,6 +34,9 @@ namespace DigiBank.Classes
 
         public void Deposita(double valor)
         {
+            DateTime dataAtual = DateTime.Now;
+
+            Movimentacoes.Add(new Extrato(dataAtual, "Deposito", valor ));
             Saldo += valor;
         }
 
@@ -43,6 +48,10 @@ namespace DigiBank.Classes
             }
             else
             {
+                DateTime dataAtual = DateTime.Now;
+
+                Movimentacoes.Add(new Extrato(dataAtual, "Saque", -valor));
+
                 Saldo -= valor;
                 return true;
             }
@@ -63,6 +72,9 @@ namespace DigiBank.Classes
             return NumeroDaConta;
         }
 
-
+        public List<Extrato> Extrato()
+        {
+            return Movimentacoes;
+        }
     }
 }
