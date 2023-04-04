@@ -13,7 +13,7 @@ namespace DigiBank.Classes
         // Construtor
         public Conta()
         {
-            NumeroDaConta = "0001";
+            NumeroDaAgencia = "0001";
             NumeroDaContaSequencial++;
 
         }
