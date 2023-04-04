@@ -18,13 +18,17 @@ namespace DigiBank.Classes
 
             Console.Clear();
 
-            Console.WriteLine("                                                                           ");
-            Console.WriteLine("                            Digite a Opção Desejada:                       ");
-            Console.WriteLine("                            ========================                       ");
-            Console.WriteLine("                            1 - Criar Conta                                ");
-            Console.WriteLine("                            ========================                       ");
-            Console.WriteLine("                            2 - Entrar com CPF e Senha                     ");
-            Console.WriteLine("                            ========================                       ");
+            Console.WriteLine("        =========================================================");
+            Console.WriteLine("        |                 BEM-VINDO AO BANCO DIGIBANK           |");
+            Console.WriteLine("        |=======================================================|");
+            Console.WriteLine("        |                 DIGITE A OPÇÃO DESEJADA               |");
+            Console.WriteLine("        |-------------------------------------------------------|");
+            Console.WriteLine("        |                 1 - CRIAR CONTA                       |");
+            Console.WriteLine("        |-------------------------------------------------------|");
+            Console.WriteLine("        |                 2 - ENTRAR COM CPF E SENHA            |");
+            Console.WriteLine("        |-------------------------------------------------------|");
+            Console.WriteLine("        =========================================================");
+
 
             opcao = int.Parse(Console.ReadLine());
 
@@ -184,12 +188,14 @@ namespace DigiBank.Classes
 
             TelaBoasVindas(pessoa);
 
-            Console.WriteLine("                                                                              ");
-            Console.WriteLine("                                                                              ");
-            Console.WriteLine("                   Deposito Realizado com Sucesso                             ");
-            Console.WriteLine("                  ================================                            ");
-            Console.WriteLine("                                                                              ");
-            Console.WriteLine("                                                                              ");
+            Console.WriteLine("                                                                                                   ");
+            Console.WriteLine("                                                                                                   ");
+            Console.WriteLine("                              Deposito Realizado com Sucesso!                                      ");
+            Console.WriteLine("                            ===================================                                    ");
+            Console.WriteLine("                                                                                                   ");
+            Console.WriteLine("                                                                                                   ");
+
+
 
             OpcaoVoltarLogado(pessoa);
         }
@@ -210,22 +216,22 @@ namespace DigiBank.Classes
 
             TelaBoasVindas(pessoa);
 
-            Console.WriteLine("                                                                              ");
-            Console.WriteLine("                                                                              ");
+            Console.WriteLine("                                                                                                       ");
+            Console.WriteLine("                                                                                                       ");
 
             if (okSaque)
             {
-                Console.WriteLine("                   Saque Realizado com Sucesso                            ");
-                Console.WriteLine("                  ================================                        ");
+                Console.WriteLine("                              Saque Realizado com Sucesso!                                         ");
+                Console.WriteLine("                            ===================================                                    ");
             }
             else
             {
-                Console.WriteLine("                         Saldo Insuficiente                               ");
-                Console.WriteLine("                  ================================                        ");
-            }
+                Console.WriteLine("                                   Saldo Insuficiente                                             ");
+                Console.WriteLine("                            ================================                                      ");
+            } 
 
-            Console.WriteLine("                                                                              ");
-            Console.WriteLine("                                                                              ");
+            Console.WriteLine("                                                                                                      ");
+            Console.WriteLine("                                                                                                      ");
 
             OpcaoVoltarLogado(pessoa);
         }
@@ -236,8 +242,10 @@ namespace DigiBank.Classes
 
             TelaBoasVindas(pessoa);
 
-            Console.WriteLine($"                            Seu Saldo é: R$ {pessoa.Conta.ConsultaSaldo()}                         ");
-            Console.WriteLine("                          ============================                                              ");
+            Console.WriteLine($"                              Seu Saldo é: R$ {pessoa.Conta.ConsultaSaldo()}                         ");
+            Console.WriteLine("                            ============================                                              ");
+            Console.WriteLine("                                                                                                      ");
+
 
             OpcaoVoltarLogado(pessoa);
 
